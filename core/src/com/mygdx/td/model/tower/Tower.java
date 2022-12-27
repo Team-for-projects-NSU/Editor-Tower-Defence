@@ -19,9 +19,6 @@ public class Tower {
         GenerateCurrency
     }
 
-    public enum ActionParameter {
-
-    }
 
     private String name;
     private int maxHealth;
@@ -32,8 +29,8 @@ public class Tower {
     private int actionRate;
     private int actionRange;
 
-    private Map<ActionParameter, Float> actionParameters;
-    private List<TowerUpgrade> upgrades;
+    public Map<String, Float> actionParams;
+    private List<Integer> upgradeIDs;
     // добавить эффекты
 
 }
