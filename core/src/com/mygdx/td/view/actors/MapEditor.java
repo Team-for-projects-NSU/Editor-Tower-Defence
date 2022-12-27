@@ -11,7 +11,7 @@ import com.mygdx.td.view.utils.Constants;
 import com.sun.tools.javac.util.StringUtils;
 
 public class MapEditor {
-    StageManagement stageManagement;
+    public StageManagement stageManagement;
     private Group group;
     private Group map;
     TextField mapWidth;
@@ -79,7 +79,7 @@ public class MapEditor {
         map = new Group();
         for (int i = 0; i < width * Constants.TILE_SIZE; i = i + Constants.TILE_SIZE){
             for (int j = 0; j < height * Constants.TILE_SIZE; j = j + Constants.TILE_SIZE){
-                Tile tile = new Tile(i, j);
+                Tile tile = new Tile(i, j, this);
                 map.addActor(tile);
             }
         }

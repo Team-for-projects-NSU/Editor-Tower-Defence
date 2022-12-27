@@ -13,8 +13,9 @@ public class Tile extends Actor {
 
     private Texture texture;
     private Color color;
+    private MapEditor mapEditor;
 
-    public Tile(float x, float y) {
+    public Tile(float x, float y, final MapEditor mapEditor) {
         this.color = Color.GREEN;
         createTexture(Constants.TILE_SIZE, Constants.TILE_SIZE, color);
         setX(x);
@@ -43,11 +44,8 @@ public class Tile extends Actor {
                 }
                 setColor(newColor);
                 createTexture(Constants.TILE_SIZE, Constants.TILE_SIZE, getColor());
-
-                // tileX =
-                // tileY =
-                // mapController.changeTile(tileX, tileY, newColor)
-                //менять тип ячейки в карте/ getX getY
+                mapEditor.stageManagement.towerDefence.controller.getMapController().changeTile((int) getX() / Constants.TILE_SIZE,
+                        (int) getY() / Constants.TILE_SIZE, newColor);
             }
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 return true;
