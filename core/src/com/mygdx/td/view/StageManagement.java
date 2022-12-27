@@ -14,8 +14,8 @@ public class StageManagement {
     public StageManagement(Stage appStage, TowerDefence towerDefence){
         this.appStage = appStage;
         this.towerDefence = towerDefence;
-        mapEditor = new MapEditor(towerDefence);
-        leftBar = new LeftBar();
+        mapEditor = new MapEditor(this);
+        leftBar = new LeftBar(this);
         this.appStage.addActor(mapEditor.getGroup());
         this.appStage.addActor(leftBar.getGroup());
 
