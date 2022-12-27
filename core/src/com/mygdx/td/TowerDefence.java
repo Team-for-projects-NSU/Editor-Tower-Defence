@@ -15,7 +15,7 @@ public class TowerDefence extends Game {
 		controller = new Controller();
 
 		appSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-		this.setScreen(new MainScreen());
+		this.setScreen(new MainScreen(this));
 	}
 
 	@Override

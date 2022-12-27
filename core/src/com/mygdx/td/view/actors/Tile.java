@@ -24,22 +24,24 @@ public class Tile extends Actor {
         addListener(new InputListener(){
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 Color currentColor = getColor();
+                Color newColor = Color.GREEN;
 
                 if (currentColor == Color.GREEN){
-                    setColor(Color.YELLOW);
+                    newColor = Color.YELLOW;
                 }
                 if (currentColor == Color.YELLOW){
-                    setColor(Color.GRAY);
+                    newColor = Color.GRAY;
                 }
                 if (currentColor == Color.GRAY){
-                    setColor(Color.BLUE);
+                    newColor = Color.BLUE;
                 }
                 if (currentColor == Color.BLUE){
-                    setColor(Color.RED);
+                    newColor = Color.RED;
                 }
                 if (currentColor == Color.RED){
-                    setColor(Color.GREEN);
+                    newColor = Color.GREEN;
                 }
+                setColor(newColor);
                 createTexture(Constants.TILE_SIZE, Constants.TILE_SIZE, getColor());
 
                 // tileX =

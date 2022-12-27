@@ -1,17 +1,20 @@
 package com.mygdx.td.view.actors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.mygdx.td.TowerDefence;
 import com.mygdx.td.view.actors.buttons.CreateMap;
 import com.mygdx.td.view.utils.Constants;
 
 public class MapEditor {
+    TowerDefence towerDefence;
     private Group group;
     private Group map;
     TextField mapWidth;
     TextField mapHeight;
-    public MapEditor(){
+    public MapEditor(TowerDefence towerDefence){
+        this.towerDefence = towerDefence;
         group = new Group();
         Rectangle settingRec = new Rectangle(0, 0,
                 Constants.SETTING_WINDOW_WIDTH, Constants.SETTING_WINDOW_HEIGHT, Color.GRAY);
@@ -39,9 +42,9 @@ public class MapEditor {
                 map.addActor(tile);
             }
         }
+        map.setPosition(Constants.TILE_SIZE, Constants.TILE_SIZE);
         group.addActor(map);
-
-        // mapController.addMap(width, height)
+        towerDefence.controller.getMapController().addMap(width, height);
     }
     public Group getGroup() {
         return group;

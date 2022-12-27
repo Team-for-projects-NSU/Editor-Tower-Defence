@@ -6,6 +6,7 @@ import com.mygdx.td.model.level.LevelMapList;
 import com.badlogic.gdx.graphics.Color;
 import lombok.Getter;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MapController {
@@ -16,7 +17,7 @@ public class MapController {
 
     public MapController() {
         maps = new LevelMapList();
-
+        tileColors = new HashMap<>();
         tileColors.put(Color.GREEN, LevelMap.Tile.EMPTY);
         tileColors.put(Color.YELLOW, LevelMap.Tile.PATH);
         tileColors.put(Color.GRAY, LevelMap.Tile.BUILDING);

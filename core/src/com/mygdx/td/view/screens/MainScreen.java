@@ -5,14 +5,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.td.TowerDefence;
 import com.mygdx.td.view.StageManagement;
 
 public class MainScreen implements Screen{
     private Stage stage;
 
-    public MainScreen(){
+    public MainScreen(TowerDefence towerDefence){
         stage = new Stage(new ScreenViewport());
-        StageManagement stageManagement = new StageManagement(stage);
+        StageManagement stageManagement = new StageManagement(stage, towerDefence);
     }
 
     @Override
