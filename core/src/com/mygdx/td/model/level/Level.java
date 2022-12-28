@@ -11,12 +11,14 @@ import java.util.List;
 @Setter
 public class Level {
 
-    private int defaultWaveInterval;
     private List<Wave> waves;
-    private int startCurrency;
+    private int startingCurrency;
     private int reward;
-    private HashMap<String, Float> enemyModifiers;
+    // private HashMap<String, Float> enemyModifiers;
     private int mapID;
+    public String backgroundTextureName;
+    public String plotTextureName;
+    public String roadTextureName;
 
     public Level() {
         waves = new ArrayList<>();

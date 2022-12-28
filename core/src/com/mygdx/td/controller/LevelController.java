@@ -12,10 +12,9 @@ public class LevelController {
         levels = new LevelList();
     }
 
-    public void addLevel(int defaultWaveInterval, int startCurrency, int reward, int mapID) {
+    public void addLevel(int startCurrency, int reward, int mapID) {
         Level newLevel = new Level();
-        newLevel.setDefaultWaveInterval(defaultWaveInterval);
-        newLevel.setStartCurrency(startCurrency);
+        newLevel.setStartingCurrency(startCurrency);
         newLevel.setReward(reward);
         newLevel.setMapID(mapID);
 

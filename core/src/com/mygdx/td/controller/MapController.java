@@ -13,7 +13,7 @@ public class MapController {
 
     @Getter
     private final LevelMapList maps;
-    private Map<Color, LevelMap.Tile> tileColors;
+    private final Map<Color, LevelMap.Tile> tileColors;
 
     public MapController() {
         maps = new LevelMapList();

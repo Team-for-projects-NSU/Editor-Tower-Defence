@@ -16,7 +16,7 @@ public class TowerList {
     public TowerList() {
         towers = new ArrayList<>();
         towers.add(new Tower("BASE", 100, 0, "", 0,
-                Tower.ActionType.DoNothing, 0, 0, null, new ArrayList<TowerUpgrade>()));
+                Tower.ActionType.DoNothing, 0, 0, null, new ArrayList<Integer>()));
     }
 
     public void addTower(Tower tower) {
