@@ -13,5 +13,5 @@ import java.util.Map;
 @AllArgsConstructor
 public class TowerUpgrade {
     private int price;
-    private Map<Tower.ActionParameter, Float> modifiers;
+    private Map<String, Float> modifiers;
 }

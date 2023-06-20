@@ -1,6 +1,8 @@
 package com.mygdx.td.model.level;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -8,26 +10,28 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Wave {
 
     private int waveDelay;
-    private int enemyAmount;
-    private int enemyFrequency;
-    private List<Integer> enemyTypeIDs;
+    private int enemyCount;
+    private int enemyInterval;
+    private List<Integer> enemyTypes;
 
     public Wave(int waveDelay, int enemyAmount, int enemyFrequency) {
-        enemyTypeIDs = new ArrayList<>();
+        enemyTypes = new ArrayList<>();
         this.waveDelay = waveDelay;
-        this.enemyAmount = enemyAmount;
-        this.enemyFrequency = enemyFrequency;
+        this.enemyCount = enemyAmount;
+        this.enemyInterval = enemyFrequency;
     }
 
     public void addEnemyType(int enemyTypeID) {
-        enemyTypeIDs.add(enemyTypeID);
+        enemyTypes.add(enemyTypeID);
     }
 
     public void removeEnemyType(int typeIndex) {
-        enemyTypeIDs.remove(typeIndex);
+        enemyTypes.remove(typeIndex);
     }
 
 }

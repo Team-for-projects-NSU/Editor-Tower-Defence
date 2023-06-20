@@ -1,5 +1,6 @@
 package com.mygdx.td.controller;
 
+import com.mygdx.td.model.level.Coordinates;
 import com.mygdx.td.model.level.LevelMap;
 import com.mygdx.td.model.level.LevelMapList;
 
@@ -13,16 +14,16 @@ public class MapController {
 
     @Getter
     private final LevelMapList maps;
-    private Map<Color, LevelMap.Tile> tileColors;
+    private final Map<Color, LevelMap.Tile> tileColors;
 
     public MapController() {
         maps = new LevelMapList();
         tileColors = new HashMap<>();
-        tileColors.put(Color.GREEN, LevelMap.Tile.EMPTY);
-        tileColors.put(Color.YELLOW, LevelMap.Tile.PATH);
-        tileColors.put(Color.GRAY, LevelMap.Tile.BUILDING);
-        tileColors.put(Color.RED, LevelMap.Tile.SPAWNER);
-        tileColors.put(Color.BLUE, LevelMap.Tile.BASE);
+        tileColors.put(Color.GREEN, LevelMap.Tile.Background);
+        tileColors.put(Color.YELLOW, LevelMap.Tile.Road);
+        tileColors.put(Color.GRAY, LevelMap.Tile.Plot);
+        tileColors.put(Color.RED, LevelMap.Tile.Plot);
+        tileColors.put(Color.BLUE, LevelMap.Tile.Plot);
     }
 
     public void addMap(int width, int height) {
@@ -31,6 +32,13 @@ public class MapController {
 
     public void changeTile(int x, int y, Color color) {
         maps.getMap(0).changeMapTileType(x, y, tileColors.get(color));
+        if (color.equals(Color.RED)) {
+            maps.getMap(0).setSpawnerCoordinates(new Coordinates(x, y));
+        }
+
+        if (color.equals(Color.BLUE)) {
+            maps.getMap(0).setBaseCoordinates(new Coordinates(x, y));
+        }
     }
 
 }

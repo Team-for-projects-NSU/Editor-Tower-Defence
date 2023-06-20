@@ -1,60 +1,83 @@
 package com.mygdx.td.model.level;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Arrays;
 
-@Setter
 @Getter
+@ToString
 public class LevelMap {
 
     public enum Tile {
-        EMPTY,
-        PATH,
-        BUILDING,
-        SPAWNER,
-        BASE
+        Background,
+        Road,
+        Plot
     }
+
+    private int id;
 
     private final int width;
     private final int height;
 
-    private Integer[] baseCoordinates;
-    private Integer[] spawnerCoordinates;
+    private Coordinates baseCoordinates;
+    private Coordinates spawnerCoordinates;
 
     private Tile[][] field;
-
-//    private final Integer[] spawnerCoordinates;
-//    private final Integer[] baseCoordinates;
 
     public LevelMap(int mapWidth, int mapHeight) {
         width = mapWidth;
         height = mapHeight;
         field = new Tile[mapWidth][mapHeight];
         for (Tile[] raw : field) {
-            Arrays.fill(raw, Tile.EMPTY);
+            Arrays.fill(raw, Tile.Background);
         }
-
-        baseCoordinates = new Integer[2];
-        spawnerCoordinates = new Integer[2];
+        baseCoordinates = new Coordinates();
+        spawnerCoordinates = new Coordinates();
     }
 
     public void changeMapTileType(int x, int y, Tile newType) {
         field[x][y] = newType;
-        if (newType == Tile.BASE) {
-            if (baseCoordinates[0] != null) {
-                field[baseCoordinates[0]][baseCoordinates[1]] = Tile.EMPTY;
-            }
-            baseCoordinates[0] = x;
-            baseCoordinates[1] = y;
-        } else if (newType == Tile.SPAWNER) {
+    }
 
-            if (spawnerCoordinates[0] != null) {
-                field[spawnerCoordinates[0]][spawnerCoordinates[1]] = Tile.EMPTY;
+    public void changeMapTileType(Coordinates coordinates, Tile newType) {
+        field[(int) coordinates.x][(int) coordinates.y] = newType;
+    }
+
+    public Tile getTileType(int x, int y) {
+        return field[x][y];
+    }
+
+    public Tile getTileType(Coordinates coordinates) {
+        return field[(int) coordinates.x][(int) coordinates.y];
+    }
+
+    public TileType[][] convert() {
+        TileType[][] tileMap = new TileType[width][height];
+
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                tileMap[i][j] = TileType.Background;
+                if (field[i][j] == Tile.Plot) {
+                    tileMap[i][j] = TileType.Plot;
+                } else if (field[i][j] == Tile.Road) {
+                    tileMap[i][j] = TileType.Road;
+                }
             }
-            spawnerCoordinates[0] = x;
-            spawnerCoordinates[1] = y;
         }
+
+        return tileMap;
+    }
+
+    public void setBaseCoordinates(Coordinates baseCoordinates) {
+        this.baseCoordinates = baseCoordinates;
+    }
+
+    public void setSpawnerCoordinates(Coordinates spawnerCoordinates) {
+        this.spawnerCoordinates = spawnerCoordinates;
+    }
+
+    public void setField(Tile[][] field) {
+        this.field = field;
     }
 }
