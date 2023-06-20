@@ -1,6 +1,6 @@
 package com.mygdx.td.controller;
 
-import com.badlogic.gdx.math.Vector2;
+import com.mygdx.td.model.level.Coordinates;
 import com.mygdx.td.model.level.LevelMap;
 import com.mygdx.td.model.level.LevelMapList;
 
@@ -33,11 +33,11 @@ public class MapController {
     public void changeTile(int x, int y, Color color) {
         maps.getMap(0).changeMapTileType(x, y, tileColors.get(color));
         if (color.equals(Color.RED)) {
-            maps.getMap(0).setSpawnerCoordinates(new Vector2(x, y));
+            maps.getMap(0).setSpawnerCoordinates(new Coordinates(x, y));
         }
 
         if (color.equals(Color.BLUE)) {
-            maps.getMap(0).setBaseCoordinates(new Vector2(x, y));
+            maps.getMap(0).setBaseCoordinates(new Coordinates(x, y));
         }
     }
 

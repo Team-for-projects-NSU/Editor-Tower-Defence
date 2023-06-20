@@ -1,6 +1,5 @@
 package com.mygdx.td.model.level;
 
-import com.badlogic.gdx.math.Vector2;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -21,8 +20,8 @@ public class LevelMap {
     private final int width;
     private final int height;
 
-    private Vector2 baseCoordinates;
-    private Vector2 spawnerCoordinates;
+    private Coordinates baseCoordinates;
+    private Coordinates spawnerCoordinates;
 
     private Tile[][] field;
 
@@ -33,15 +32,15 @@ public class LevelMap {
         for (Tile[] raw : field) {
             Arrays.fill(raw, Tile.Background);
         }
-        baseCoordinates = new Vector2();
-        spawnerCoordinates = new Vector2();
+        baseCoordinates = new Coordinates();
+        spawnerCoordinates = new Coordinates();
     }
 
     public void changeMapTileType(int x, int y, Tile newType) {
         field[x][y] = newType;
     }
 
-    public void changeMapTileType(Vector2 coordinates, Tile newType) {
+    public void changeMapTileType(Coordinates coordinates, Tile newType) {
         field[(int) coordinates.x][(int) coordinates.y] = newType;
     }
 
@@ -49,7 +48,7 @@ public class LevelMap {
         return field[x][y];
     }
 
-    public Tile getTileType(Vector2 coordinates) {
+    public Tile getTileType(Coordinates coordinates) {
         return field[(int) coordinates.x][(int) coordinates.y];
     }
 
@@ -70,11 +69,11 @@ public class LevelMap {
         return tileMap;
     }
 
-    public void setBaseCoordinates(Vector2 baseCoordinates) {
+    public void setBaseCoordinates(Coordinates baseCoordinates) {
         this.baseCoordinates = baseCoordinates;
     }
 
-    public void setSpawnerCoordinates(Vector2 spawnerCoordinates) {
+    public void setSpawnerCoordinates(Coordinates spawnerCoordinates) {
         this.spawnerCoordinates = spawnerCoordinates;
     }
 
