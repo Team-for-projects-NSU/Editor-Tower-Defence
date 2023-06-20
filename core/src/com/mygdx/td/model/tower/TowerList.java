@@ -11,12 +11,9 @@ import java.util.List;
 public class TowerList {
 
     private final List<Tower> towers;
-    // добавить id башен
 
     public TowerList() {
         towers = new ArrayList<>();
-        towers.add(new Tower("BASE", 100, 0, "", 0,
-                Tower.ActionType.DoNothing, 0, 0, null, new ArrayList<Integer>()));
     }
 
     public void addTower(Tower tower) {

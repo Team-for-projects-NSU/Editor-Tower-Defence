@@ -1,8 +1,8 @@
 package com.mygdx.td.controller;
 
-import com.mygdx.td.model.MapsCorrectnessChecker;
 import com.mygdx.td.model.Serializer;
 import com.mygdx.td.model.enemy.EnemyList;
+import com.mygdx.td.model.tech_tree.TechTree;
 import com.mygdx.td.model.tower.TowerList;
 import lombok.Getter;
 
@@ -18,13 +18,14 @@ public class Controller {
     }
 
     public void generateFiles() {
-        MapsCorrectnessChecker.checkCorrectness(mapController.getMaps());
+        //MapsCorrectnessChecker.checkCorrectness(mapController.getMaps());
         // other correctness checkers (if needed)
 
         TowerList towerList = new TowerList();
         EnemyList enemyList = new EnemyList();
+        TechTree techTree = new TechTree();
 
         Serializer serializer = new Serializer("config_files/");
-        serializer.serializeAll(towerList, enemyList, levelController.getLevels(), mapController.getMaps());
+        serializer.serializeAll(towerList, enemyList, levelController.getLevels(), mapController.getMaps(), techTree);
     }
 }

@@ -11,27 +11,23 @@ import java.util.Map;
 public class Enemy {
 
     public enum ActionType {
-        BASE_ATTACK,
-        TOWER_ATTACK,
-        SUPPORT
-        // ???
+        Default,
+        DoNothing,
+        BasicAttack,
     }
 
-    public enum ActionParameter {
-
-    }
-
+    private int id;
     private String name;
     private int maxHealth;
     private int reward;
     private String spriteFileName;
     private int speed;
     private ActionType actionType;
-    private int actionRate;
+    private float actionRate;
     private int actionRange;
-    private Map<ActionParameter, Float> actionParameters;
+    private Map<String, Float> actionParameters;
 
-    public void addActionParameter(ActionParameter parameter, float value) {
+    public void addActionParameter(String parameter, float value) {
         actionParameters.put(parameter, value);
     }
 }

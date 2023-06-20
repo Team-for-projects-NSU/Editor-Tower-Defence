@@ -17,21 +17,21 @@ public class Wave {
     private int waveDelay;
     private int enemyCount;
     private int enemyInterval;
-    private List<Integer> enemyTypeIDs;
+    private List<Integer> enemyTypes;
 
     public Wave(int waveDelay, int enemyAmount, int enemyFrequency) {
-        enemyTypeIDs = new ArrayList<>();
+        enemyTypes = new ArrayList<>();
         this.waveDelay = waveDelay;
         this.enemyCount = enemyAmount;
         this.enemyInterval = enemyFrequency;
     }
 
     public void addEnemyType(int enemyTypeID) {
-        enemyTypeIDs.add(enemyTypeID);
+        enemyTypes.add(enemyTypeID);
     }
 
     public void removeEnemyType(int typeIndex) {
-        enemyTypeIDs.remove(typeIndex);
+        enemyTypes.remove(typeIndex);
     }
 
 }

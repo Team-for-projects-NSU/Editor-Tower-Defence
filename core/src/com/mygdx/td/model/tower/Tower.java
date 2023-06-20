@@ -20,10 +20,11 @@ public class Tower {
     }
 
 
+    private int id;
     private String name;
     private int maxHealth;
     private int cost;
-    private String spriteFileName;
+    private String spriteName;
     private int demolitionCurrency;
     private ActionType actionType;
     private int actionRate;

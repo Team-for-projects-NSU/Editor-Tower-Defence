@@ -2,23 +2,21 @@ package com.mygdx.td.model.level;
 
 import com.badlogic.gdx.math.Vector2;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Arrays;
 
-@Setter
 @Getter
 @ToString
 public class LevelMap {
 
     public enum Tile {
-        EMPTY,
-        PATH,
-        BUILDING,
-        SPAWNER,
-        BASE
+        Background,
+        Road,
+        Plot
     }
+
+    private int id;
 
     private final int width;
     private final int height;
@@ -33,7 +31,7 @@ public class LevelMap {
         height = mapHeight;
         field = new Tile[mapWidth][mapHeight];
         for (Tile[] raw : field) {
-            Arrays.fill(raw, Tile.EMPTY);
+            Arrays.fill(raw, Tile.Background);
         }
         baseCoordinates = new Vector2();
         spawnerCoordinates = new Vector2();
@@ -41,66 +39,18 @@ public class LevelMap {
 
     public void changeMapTileType(int x, int y, Tile newType) {
         field[x][y] = newType;
-        /*
-        if (newType == Tile.BASE) {
-            field[x][y] = Tile.Plot;
-            if (baseCoordinates.x != -1) {
-                field[(int) baseCoordinates.x][(int) baseCoordinates.y] = Tile.Plot;
-            }
-            baseCoordinates.x = x;
-            baseCoordinates.y = y;
-        } else if (newType == Tile.SPAWNER) {
-            field[x][y] = Tile.Plot;
-            if (spawnerCoordinates.x != -1) {
-                field[(int) spawnerCoordinates.x][(int) spawnerCoordinates.y] = Tile.Plot;
-            }
-            spawnerCoordinates.x = x;
-            spawnerCoordinates.y = y;
-        }
-         */
     }
 
-    private boolean findBase() {
-        boolean hasTile = false;
-
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (field[i][j] == Tile.BASE) {
-                    if (hasTile) {
-                        return false;
-                    }
-                    hasTile = true;
-                    field[i][j] = Tile.BUILDING;
-                    baseCoordinates.x = i;
-                    baseCoordinates.y = j;
-                }
-            }
-        }
-        return hasTile;
+    public void changeMapTileType(Vector2 coordinates, Tile newType) {
+        field[(int) coordinates.x][(int) coordinates.y] = newType;
     }
 
-    private boolean findSpawner() {
-        boolean hasTile = false;
-
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (field[i][j] == Tile.SPAWNER) {
-                    if (hasTile) {
-                        return false;
-                    }
-                    hasTile = true;
-                    field[i][j] = Tile.BUILDING;
-                    spawnerCoordinates.x = i;
-                    spawnerCoordinates.y = j;
-                }
-            }
-        }
-
-        return hasTile;
+    public Tile getTileType(int x, int y) {
+        return field[x][y];
     }
 
-    public boolean normalizeMap() {
-        return findBase() & findSpawner();
+    public Tile getTileType(Vector2 coordinates) {
+        return field[(int) coordinates.x][(int) coordinates.y];
     }
 
     public TileType[][] convert() {
@@ -109,14 +59,26 @@ public class LevelMap {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 tileMap[i][j] = TileType.Background;
-                if (field[i][j] == Tile.BUILDING) {
+                if (field[i][j] == Tile.Plot) {
                     tileMap[i][j] = TileType.Plot;
-                } else if (field[i][j] == Tile.PATH) {
+                } else if (field[i][j] == Tile.Road) {
                     tileMap[i][j] = TileType.Road;
                 }
             }
         }
 
         return tileMap;
+    }
+
+    public void setBaseCoordinates(Vector2 baseCoordinates) {
+        this.baseCoordinates = baseCoordinates;
+    }
+
+    public void setSpawnerCoordinates(Vector2 spawnerCoordinates) {
+        this.spawnerCoordinates = spawnerCoordinates;
+    }
+
+    public void setField(Tile[][] field) {
+        this.field = field;
     }
 }

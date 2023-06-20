@@ -11,6 +11,7 @@ import com.google.gson.*;
 import com.mygdx.td.model.enemy.EnemyList;
 import com.mygdx.td.model.level.LevelList;
 import com.mygdx.td.model.level.LevelMapList;
+import com.mygdx.td.model.tech_tree.TechTree;
 import com.mygdx.td.model.tower.TowerList;
 
 public class Serializer {
@@ -29,9 +30,10 @@ public class Serializer {
         fileNames.put("Enemies", "EnemiesConfig.json");
         fileNames.put("Levels", "LevelsConfig.json");
         fileNames.put("Maps", "MapsConfig.json");
+        fileNames.put("TechTree", "TechTreeConfig.json");
     }
 
-    private void serializeObject(String filePath, Object object) {
+    public void serializeObject(String filePath, Object object) {
         File file = new File(filePath);
         Writer writer;
         try {
@@ -45,10 +47,11 @@ public class Serializer {
         }
     }
 
-    public void serializeAll(TowerList towers, EnemyList enemies, LevelList levels, LevelMapList maps) {
+    public void serializeAll(TowerList towers, EnemyList enemies, LevelList levels, LevelMapList maps, TechTree techTree) {
         serializeObject(path.concat(fileNames.get("Towers")), towers.getTowers());
         serializeObject(path.concat(fileNames.get("Enemies")), enemies.getEnemies());
         serializeObject(path.concat(fileNames.get("Levels")), levels.getLevels());
         serializeObject(path.concat(fileNames.get("Maps")), maps.getMaps());
+        serializeObject(path.concat(fileNames.get("TechTree")), techTree);
     }
 }

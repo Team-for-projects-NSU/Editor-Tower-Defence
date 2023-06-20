@@ -4,21 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Getter
 @Setter
 public class Level {
 
-    private List<Wave> waves;
+    private int id;
     private int startingCurrency;
     private int reward;
-    // private HashMap<String, Float> enemyModifiers;
+    private String backgroundTextureName;
+    private String plotTextureName;
+    private String roadTextureName;
+    private List<Wave> waves;
     private int mapID;
-    public String backgroundTextureName;
-    public String plotTextureName;
-    public String roadTextureName;
 
     public Level() {
         waves = new ArrayList<>();
