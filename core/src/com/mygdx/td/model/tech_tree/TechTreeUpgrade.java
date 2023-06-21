@@ -8,5 +8,4 @@ import lombok.NoArgsConstructor;
 public class TechTreeUpgrade {
     public String upgradedParameter;
     public float modifier;
-    public int cost;
 }
